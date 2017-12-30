@@ -846,7 +846,12 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 			return;
 		}
 
-		super.onRestoreInstanceState(state);
+        //ADW: sometimes on rotating the phone, some widgets fail to restore its states.... so... damn.
+        try {
+            super.onRestoreInstanceState(state);
+        } catch (Exception e) {
+        }
+        state = null;
 	}
 
 	@Override
